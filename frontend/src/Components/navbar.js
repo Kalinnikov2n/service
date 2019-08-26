@@ -22,16 +22,24 @@ class Navbar extends Component {
     console.log(e.target.files[0]);
     // let img = window.URL.createObjectURL(e.target.files[0])
     // console.log(img);
+    let fd = new FormData();
+    fd.append("image", e.target.files[0], e.target.files[0].name )
+    console.log(fd);
     let resp = await fetch("/upload", {
       method: "POST",
       headers:{
       "Accept" : "application/json",
-      "Content-Type": "application/json"
       },
-      body : JSON.stringify(e.target.files[0])
+      body : fd
     })
+    let path = await resp.json()
+    console.log(path.path.indexOf("/"))
+    console.log(path.path.slice(path.path.indexOf("/")))
+    let img = "http://localhost:3101" + path.path.slice(path.path.indexOf("/"))
+    
+    this.setState({img: img})
 
-    this.setState({img:img})
+    // this.setState({img:img})
 
   }
   

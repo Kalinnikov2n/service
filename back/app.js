@@ -12,7 +12,8 @@ const FileStore = require("session-file-store")(session)
 const mongoose = require("mongoose");
 mongoose.connect('mongodb://localhost:27017/game', { useNewUrlParser: true });
 const bcrypt = require("bcrypt")
-var fs = require("fs");
+const multer = require('multer')
+const fs = require("fs")
 
 
 let sessionConfig = {
@@ -22,6 +23,7 @@ let sessionConfig = {
   saveUninitialized: true,
   store: new FileStore({})
 }
+app.use(express.static('./public'))
 app.use(cookieParser());
 app.use(session(sessionConfig))
 app.use(morgan('dev'))
@@ -37,6 +39,17 @@ const corsMiddleware = (req, res, next) => {
 
 app.use(corsMiddleware)
 
+const storage = multer.diskStorage({
+  destination: './public/uploads',
+  filename: function(req, file, cb){
+    cb(null, file.name + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
+
+const upload = multer({
+  storage: storage,
+}).single('image')
+
 app.post('/', function(req, res){
 
   if(req.session){
@@ -50,6 +63,18 @@ app.post('/', function(req, res){
   }
 })
 
+app.post("/upload", async function(req, res){
+  console.log(req.body)
+  upload(req, res, (err) => {
+    if(err){
+      console.log(err)
+    }
+    else {
+      console.log(req.file)
+      res.json({path : req.file.path})
+    }
+  })
+})
 app.post('/reg', async function (req, res) {
   let user = new User({
     login: req.body.login
