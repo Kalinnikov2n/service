@@ -11,18 +11,6 @@ class VK extends Component {
     }
   }
 
-  // componentDidMount = async () => {
-  //   const resp = await fetch('/wallGet', {
-  //     credentials: 'include',
-  //     headers: {
-  //       "Accept": "application/json",
-  //       "Content-Type": "application/json"
-  //     }
-  //   });
-  //   const data = await resp.json();
-  //   this.setState({ value: data });
-  //   console.log(this.state.value)
-  // }
 
   componentDidMount = async () => {
     const resp = await fetch('/vkCheckToken', {
