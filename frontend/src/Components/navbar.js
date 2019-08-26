@@ -20,8 +20,7 @@ class Navbar extends Component {
   }
   show = async (e) =>{
     console.log(e.target.files[0]);
-    // let img = window.URL.createObjectURL(e.target.files[0])
-    // console.log(img);
+    
     let fd = new FormData();
     fd.append("image", e.target.files[0], e.target.files[0].name )
     console.log(fd);

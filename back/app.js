@@ -65,16 +65,28 @@ app.post('/', function(req, res){
 
 app.post("/upload", async function(req, res){
   console.log(req.body)
-  upload(req, res, (err) => {
+  upload(req, res, async (err) => {
     if(err){
       console.log(err)
     }
     else {
-      console.log(req.file)
-      res.json({path : req.file.path})
+      console.log(req.session.user);
+      let url = "http://localhost:3101" + req.file.path.slice(req.file.path.indexOf("/"))
+      let post = new Post({imgUrl: url, user: req.session.user});
+      console.log(post)
+      await post.save()
+      res.json({postId : post.id});
     }
   })
 })
+
+app.post("/post", async function(req, res){
+  await Post.findOneAndUpdate({_id: req.body.postId}, {$set:{title: req.body.title, description: req.body.description}})
+  console.log(await Post.findOne({_id:req.body.postId }))
+  res.end()
+})
+
+//авторизация
 app.post('/reg', async function (req, res) {
   let user = new User({
     login: req.body.login
@@ -84,6 +96,11 @@ app.post('/reg', async function (req, res) {
   await user.save();
   res.json({user:req.session.user})
 });
+
+app.get("/getPosts", async function(req, res){
+  let posts = await Post.find({user: req.session.user})
+  res.json({posts : posts})
+})
 
 app.post('/log', async function(req, res) {
   let user = await User.findOne({ login: req.body.login })
