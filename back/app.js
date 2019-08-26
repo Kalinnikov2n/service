@@ -38,7 +38,6 @@ const corsMiddleware = (req, res, next) => {
 app.use(corsMiddleware)
 
 app.post('/', function(req, res){
-
   if(req.session){
   res.json({
     user :req.session.user
@@ -89,14 +88,14 @@ app.get("/logout", function (req, res) {
 })
 //instagram
 app.get('/instagram', (req, res) => {
-  console.log("k")
+  //console.log("k")
   res.redirect('https://api.instagram.com/oauth/authorize/?client_id=63c6a274c99f49bd946935fe18091b62&redirect_uri=http://localhost:3101/instagramtoken&response_type=code')
-  console.log("+++++")
+  //console.log("+++++")
 })
 
 app.get('/instagramtoken', async (req, res) => {
   const { code } = req.query
-  console.log(code)
+  //console.log(code)
   const data = {
       client_id: '63c6a274c99f49bd946935fe18091b62',
       client_secret: '9302e3334aa549878d4f9ffd83cff32e',
@@ -108,7 +107,7 @@ app.get('/instagramtoken', async (req, res) => {
     return encodeURIComponent(key) + '=' + encodeURIComponent(data[key]);
   }).join('&');
 
-  console.log(formData)
+  //console.log(formData)
 
 const resp = await fetch(`https://api.instagram.com/oauth/access_token`, {
     method: "POST",
@@ -119,14 +118,37 @@ const resp = await fetch(`https://api.instagram.com/oauth/access_token`, {
     body: formData
 });
 const respData = await resp.json()
-console.log(respData)
+//console.log(respData)
 const { access_token } = respData;
-console.log('acces_token', access_token)
+//console.log('acces_token', access_token)
+
+const user = await User.findOne({login: req.session.user})
+  user.tokenInst = access_token
+  await user.save()
 
 // const posts = await fetch(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${access_token}`)
 // const postsData = await posts.json()
 // console.log('postData', postsData)
-res.end
+res.redirect('http://localhost:3000/instgram')
+})
+
+app.get('/boolInst', async (req,res) => {
+    const user = await User.findOne({login: req.session.user})
+    let boolToken = false
+    const instToken = user.tokenInst
+    if(instToken){
+      boolToken = true
+    }
+    else{
+      boolToken = false
+    }
+    const posts = await fetch(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${instToken}`)
+const postsData = await posts.json()
+
+    res.json({
+      postsData: postsData.data,
+      boolToken: boolToken
+    })
 })
 
 app.listen(port, function () {

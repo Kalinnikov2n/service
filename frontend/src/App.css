@@ -63,3 +63,6 @@
   border: 1px solid rgb(69, 83, 9);
   border-radius: 20px
 }
+.posts{
+  display: flex;
+}
