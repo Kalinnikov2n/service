@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/game', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/service', { useNewUrlParser: true });
 const bcrypt = require("bcrypt")
 
 const userSchema = new mongoose.Schema(

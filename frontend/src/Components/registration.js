@@ -27,7 +27,7 @@ get = async (e) => {
         login : this.state.login,
         password: this.state.password
     }
-    let resp = await fetch("http://localhost:3101/reg", {
+    let resp = await fetch("/reg", {
         method: "POST",
         headers: {
           "Accept": "application/json",
@@ -37,6 +37,7 @@ get = async (e) => {
       })
       let user = await resp.json();
       this.props.add(user.user)
+      window.location.assign("/")
 
 }
   

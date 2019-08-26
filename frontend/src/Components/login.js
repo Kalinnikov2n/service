@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import './App.css';
 import { addUser } from '../redux/actions';
 import {connect} from 'react-redux'
 
@@ -28,7 +27,7 @@ get = async (e) => {
         login : this.state.login,
         password: this.state.password
     }
-    let resp = await fetch("http://localhost:3101/log", {
+    let resp = await fetch("/log", {
         method: "POST",
         credentials: 'include',
         headers: {
@@ -44,6 +43,7 @@ get = async (e) => {
       }
       else{
       this.props.add(user.user)
+      window.location.assign("/")
       }
 
 }

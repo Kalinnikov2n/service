@@ -1,4 +1,4 @@
-import {ADD_USER, DEL_USER, ADD_CARD} from './types'
+import {ADD_USER, DEL_USER} from './types'
 
 const addUser = (login) => {
   return {
@@ -13,12 +13,7 @@ const delUser = () => {
   }
 };
 
-const addCard = (cardTitle) => {
-    return {
-      type: ADD_CARD,
-      title: cardTitle,
-    }
-  }
 
 
-export { addUser, delUser, addCard };
+
+export { addUser, delUser };

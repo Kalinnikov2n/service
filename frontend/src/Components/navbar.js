@@ -5,22 +5,48 @@ import {connect} from 'react-redux'
 
 
 class Navbar extends Component {
+  constructor(props){
+    super(props);
+    this.state= {
+      img : ""
+    }
+  }
+
 
    logOut = async() => {
-      let resp = await fetch("http://localhost:3101/logout");
+      await fetch("/logout");
       this.props.del()
+      window.location.assign("/")
+  }
+  show = async (e) =>{
+    console.log(e.target.files[0]);
+    // let img = window.URL.createObjectURL(e.target.files[0])
+    // console.log(img);
+    let resp = await fetch("/upload", {
+      method: "POST",
+      headers:{
+      "Accept" : "application/json",
+      "Content-Type": "application/json"
+      },
+      body : JSON.stringify(e.target.files[0])
+    })
+
+    this.setState({img:img})
+
   }
   
   render(){
     return(
       <div>
+        <input type= "file" onChange={this.show}></input>
+        <img src = {this.state.img}></img>
         <span> {this.props.user}</span>
         <span> <button onClick={this.logOut}> log out</button></span>
       </div>
     )
   }
-}
 
+}
 function mapStateToProps(state) {
   return {
     user: state.user.login

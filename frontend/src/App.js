@@ -7,13 +7,13 @@ import Registration from "./Components/registration";
 import Login from "./Components/login";
 import Main from "./Components/Main";
 import Start from "./Components/start";
-import Game from './Components/Game';
+
 
 
 class App extends Component {
 
   async componentDidMount() {
-    let resp = await fetch("http://localhost:3101", {
+    let resp = await fetch("/", {
       method: "POST",
       credentials: 'include',
       headers: {
@@ -33,7 +33,6 @@ class App extends Component {
           {this.props.user ?
             <div>
               <Main/>
-              <Route path='/game' component={Game} />
            </div>
             :
             <div>
