@@ -37,7 +37,7 @@ get = async (e) => {
       })
       let user = await resp.json();
       this.props.add(user.user)
-      window.location.assign("/")
+      window.location.assign("/servicePosts")
 
 }
   
