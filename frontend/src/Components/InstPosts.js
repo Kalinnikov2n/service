@@ -5,7 +5,7 @@ export default class InstPosts extends Component {
         return (
             <div className="posts">
                     <div>
-                    <img src={this.props.foto} width="200px"></img>
+                    <img src={this.props.foto} width="200px" ></img>
                         <p>Likes:{this.props.likes}||</p>
                         <p>Comments:{this.props.comments}</p>
                     </div>
