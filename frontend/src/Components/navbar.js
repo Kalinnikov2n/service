@@ -31,17 +31,19 @@ class Navbar extends Component {
       body : JSON.stringify(e.target.files[0])
     })
 
-    this.setState({img:img})
+    
 
   }
   
   render(){
     return(
-      <div>
-        <input type= "file" onChange={this.show}></input>
-        <img src = {this.state.img}></img>
+      <div className="navBar">
+        {/* <input type= "file" onChange={this.show}></input>
+        <img src = {this.state.img}></img> */}
+        <div className = "navBarSmall">
         <span> {this.props.user}</span>
         <span> <button onClick={this.logOut}> log out</button></span>
+        </div>
       </div>
     )
   }

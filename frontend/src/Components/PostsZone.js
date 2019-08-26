@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 export class PostsZone extends Component {
     render() {
       return (
-        <div>
+        <div className="divPost">
          hi
         </div>
       )
