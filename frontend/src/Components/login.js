@@ -43,7 +43,7 @@ get = async (e) => {
       }
       else{
       this.props.add(user.user)
-      window.location.assign("/")
+      window.location.assign("/servicePosts")
       }
 
 }

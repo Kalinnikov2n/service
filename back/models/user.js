@@ -5,7 +5,8 @@ const bcrypt = require("bcrypt")
 const userSchema = new mongoose.Schema(
     {
      login:   String,           // название колоды
-     password: String         // для какой должности
+     password: String,         // для какой должности
+     tokenInst: String
     }
   );
   userSchema.methods.createHash = function(password){

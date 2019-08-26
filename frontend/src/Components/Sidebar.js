@@ -8,7 +8,7 @@ export class Sidebar extends Component {
     return (
       <div className = "sideBar">
         <ul>
-       <li><Link to="/main">main</Link></li>
+       <li><Link to="/servicePosts" >main</Link></li>
        <li><Link to="/VK">VK</Link></li>
        <li><Link to="/facebook">facebook</Link></li>
        <li><Link to="/instagram">instagram</Link></li>
