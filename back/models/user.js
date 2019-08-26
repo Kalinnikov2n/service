@@ -6,7 +6,9 @@ const userSchema = new mongoose.Schema(
     {
      login:   String,           // название колоды
      password: String,         // для какой должности
-     tokenInst: String
+     tokenInst: String,
+     vkId: Number,
+     vkToken: String
     }
   );
   userSchema.methods.createHash = function(password){
