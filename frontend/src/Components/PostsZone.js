@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ServicePosts from "./ServicePosts"
 import Instagram from './Instagram';
+import VK from './VK';
 
 export class PostsZone extends Component {
     render() {
@@ -10,8 +11,8 @@ export class PostsZone extends Component {
         <div className="divPost">
         <Switch>
         <Route path="/servicePosts" component={ServicePosts} />
-         {/* <Route path="/vk" component={Login} />
-        <Route path="/facebook" component={Login} /> */}
+        <Route path="/vk" component={VK} />
+        {/* <Route path="/facebook" component={Login} /> */} */}
         <Route path="/instagram" component={Instagram} />
         </Switch>
         </div>
