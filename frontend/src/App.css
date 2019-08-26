@@ -33,7 +33,6 @@
 }
 
 .divPost{
-  height: 100vh;
   background-color: rgba(107, 194, 179, 0.678) 
 }
 .sideBar{
@@ -64,5 +63,13 @@
   border-radius: 20px
 }
 .posts{
-  display: flex;
+  display: inline-flex;
+  width:350px;
+  justify-content: space-around;
+  margin: 10px auto;
 }
+.posts img{
+  border-radius: 5px;
+}
+
+
