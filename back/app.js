@@ -132,3 +132,51 @@ res.end
 app.listen(port, function () {
   console.log(`Example app listening on port ${port}!`)
 });
+
+// VKontakte get wall post with stats
+app.get('/wallGet', async (req, res) => {
+  const resp = await fetch('https://api.vk.com/method/wall.get?owner_id=141938692&filter=owner&count=10&access_token=29adba0535a5509e4a647196148e8f8ca04328b3040e60eba99df3a5861e4aa0b9b0cca2cb87ab0d6319b&v=5.101', {
+      headers: {
+        "Accept": "application/json"
+      }
+    });
+    const data = await resp.json();
+    console.log(data)
+    res.json(data.response.items);
+});
+
+// VKontakte getting token - step 1
+app.get('/oauth', (req, res) => {	
+  res.redirect('https://oauth.vk.com/authorize?client_id=7110854&display=page&redirect_uri=http://localhost:3101/vk_code&scope=wall&response_type=code&v=5.101&state=123456')
+})
+// VKontakte getting token - step 2
+app.get('/vk_code', async (req, res) => {
+  try {
+    const { code } = req.query;
+    const response = await fetch(`https://oauth.vk.com/access_token?client_id=7110854&client_secret=YfdX13jLLBZqZz6L2cax&redirect_uri=http://localhost:3101/vk_code&code=${code}`)
+    const { access_token, user_id } = await response.json();
+    let user = await User.findOne({ login: req.session.user });
+    user.vkId = user_id;
+    user.vkToken = access_token;
+    await user.save();
+    console.log(access_token);
+    console.log(user_id);
+    res.redirect('http://localhost:3000/VK');
+  } catch (rerror) {
+    res.status(404);
+  }
+});
+
+// VKontakte checking token
+app.get('/vkCheckToken', async (req, res) => {
+  let user = await User.findOne({login: req.session.user});
+  let checkToken;
+  if(user.vkToken) {
+    checkToken = true;
+  } else {
+    checkToken = false;
+  }
+  res.json({
+    checkToken: checkToken
+  })
+});
