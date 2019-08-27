@@ -12,7 +12,6 @@ class Registration extends Component {
             password: "",
         }
     }
-
   password = (e) => {
       this.setState({password: e.target.value})
   }
@@ -43,11 +42,15 @@ get = async (e) => {
   
   render(){
     return(
+      <div className = "logReg">
       <form onSubmit= {this.get}>
-          <input value= {this.state.login} placeholder="login" onChange={this.login}/>
-          <input value={this.state.password} placeholder="password" onChange={this.password} type= "password"/>
-          <input type="submit" />
+          <p>Login</p>
+          <input value= {this.state.login} onChange={this.login}/>
+          <p>Password</p>
+          <input value={this.state.password} onChange={this.password} type= "password"/>
+          <button type="submit" >Sign Up</button>
       </form>
+      </div>
     )
   }
 }

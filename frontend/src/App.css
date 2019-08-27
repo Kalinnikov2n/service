@@ -1,5 +1,7 @@
+
 .App {
   text-align: center;
+  height: 100vh;
 }
 
 .App-logo {
@@ -72,6 +74,74 @@
 }
 .posts img{
   border-radius: 5px;
+}
+
+.mainPage{
+  background-color:rgba(248, 138, 75, 0.801);
+  width: 600px;
+  margin: 0 auto;
+  min-height: 490px; 
+  border-radius: 20px 20px 50px 0;
+  margin-top: 140px; 
+}
+
+.mainPage .button{
+  width:200px;
+  height: 50px;
+  font-size: 30px;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  margin-top: 20px; 
+}
+.mainPage button:last-child{
+  height: 70px
+}
+.ActiveBtn{
+  color:white;
+}
+
+.logReg{
+  width: 100%;
+  margin:0 auto;
+  text-align: left;
+  font-size:25px;
+}
+.logReg input{
+  font-size: 20px;
+  line-height: 1.5;
+  color: #666;
+  display: block;
+  width: 400px;
+  background: #e6e6e6;
+  height: 40px;
+  border-radius: 10px;
+  margin: 10px auto;
+  outline: none;
+    border: none;
+    padding: 5px;
+}
+
+.logReg p {
+  margin-top:20px;
+  margin-left: 100px;
+}
+.logReg form{
+  margin-top: 30px;
+}
+.logReg button{
+  border-radius: 20px;
+  margin-top: 30px;
+  margin-left: 220px;
+}
+
+.logReg button:hover{
+  background-color:rgba(109, 5, 170, 0.699);
+  color:white;
 }
 
 

@@ -50,12 +50,16 @@ get = async (e) => {
   
   render(){
     return(
+      <div className = "logReg">
       <form onSubmit= {this.get}>
-          <input value= {this.state.login} placeholder="login" onChange={this.login}/>
-          <input value={this.state.password} placeholder="password" onChange={this.password} type= "password"/>
-          <input type="submit" />
           <span>{this.state.mes}</span>
+      <p>Login</p>
+          <input value= {this.state.login}  onChange={this.login}/>
+          <p>Password</p>
+          <input value={this.state.password} onChange={this.password} type= "password"/>
+          <button type="submit" >Sign In</button>
       </form>
+      </div>
     )
   }
 }

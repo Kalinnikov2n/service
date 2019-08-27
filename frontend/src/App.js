@@ -3,10 +3,9 @@ import './App.css';
 import { addUser } from './redux/actions';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Registration from "./Components/registration";
-import Login from "./Components/login";
 import Main from "./Components/Main";
 import Start from "./Components/start";
+import Background from './back.png';
 
 
 
@@ -29,17 +28,14 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <div style={{backgroundImage:'url('+Background+')', backgroundSize:'cover'}}>
           {this.props.user ?
             <div>
               <Main/>
            </div>
             :
             <div>
-              <Switch>
-                <Route path="/registration" component={Registration} />
-                <Route path="/login" component={Login} />
-              </Switch>
+
               <Start />
             </div>
           }
