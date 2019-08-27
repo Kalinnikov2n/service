@@ -237,7 +237,7 @@ app.get('/vkCheckToken', async (req, res) => {
 // VKontakte get wall post with stats
 app.get('/wallGet', async (req, res) => {
   let user = await User.findOne({login: req.session.user});
-  const resp = await fetch(`https://api.vk.com/method/wall.get?owner_id=${user.vkId}&filter=owner&count=35&access_token=${user.vkToken}&v=5.101`, {
+  const resp = await fetch(`https://api.vk.com/method/wall.get?owner_id=${user.vkId}&filter=owner&count=20&access_token=${user.vkToken}&v=5.101`, {
       headers: {
         "Accept": "application/json"
       }
