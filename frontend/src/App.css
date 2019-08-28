@@ -116,7 +116,8 @@
 }
 
 .inpost {
-  margin-left: 40px;
+  /* margin-left: 40px; */
+  margin: 0 auto;
 }
 /* rgba(248, 138, 75, 0.801) */
 /* rgba(54, 236, 160, 0.801) */
