@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import Like from '../like.png';
+import View from '../eye.png';
+import Comment from '../comment.png';
+
 
 class VKPost extends Component {
   constructor(props) {
@@ -9,9 +13,9 @@ class VKPost extends Component {
     const { post } = this.props;
     return (
       <div>
-        <p className='vkstats'>Comments: {post.comments.count}</p>
-        <p className='vkstats'>Likes: {post.likes.count}</p>
-        {post.views ? <p className='vkstats'>Views: {post.views.count}</p> : null}
+        <span className='stats'><img src={Comment} width={20}/> {post.comments.count}</span>       
+        <span className='stats'><img src={Like} width={20}/> {post.likes.count}</span>
+        {post.views ? <span className='stats'><img src={View} width={20}/> {post.views.count}</span> : null}
       </div>
     )
   }
@@ -32,7 +36,7 @@ class VKPost extends Component {
           <div className='inpost'>
             <p>Title: {post.attachments[0].link.title}</p>
             <p>{post.attachments[0].link.description}</p>
-            <img width='200px' src={post.attachments[0].link.photo.sizes[2].url} alt="pict" />
+            <img  className='picture' width='200px' src={post.attachments[0].link.photo.sizes[2].url} alt="pict" />
             <div>{this.stats}</div>
           </div>
         </div>
@@ -44,7 +48,7 @@ class VKPost extends Component {
         <div className='posts'>
           <div className='inpost'>
             <p>{post.text}</p>
-            <img width='200px' src={post.attachments[0].photo.sizes[2].url} alt="pict" />
+            <img  className='picture' width='200px' src={post.attachments[0].photo.sizes[2].url} alt="pict" />
             <div>{this.stats}</div>
           </div>
         </div>
