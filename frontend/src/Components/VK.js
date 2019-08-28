@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import VKPost from './VKPost';
+import {connect} from 'react-redux'
 
 class VK extends Component {
   constructor(props) {
@@ -13,8 +14,9 @@ class VK extends Component {
 
 
   componentDidMount = async () => {
-    const resp = await fetch('http://localhost:3101/vkCheckToken', {
-      credentials: 'include',
+    const r = await fetch(`http://localhost:3101/try?user=${this.props.user}`);
+    const resp = await fetch(`http://localhost:3101/vkCheck`, {
+      // credentials: 'include',
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
@@ -23,14 +25,16 @@ class VK extends Component {
     const data = await resp.json();
 
     if (data.checkToken) {
-      const resp = await fetch('/wallGet', {
-        credentials: 'include',
+      const resp2 = await fetch('http://localhost:3101/wallGet', {
+        // credentials: 'include',
         headers: {
           "Accept": "application/json",
           "Content-Type": "application/json"
         }
       });
-      const data = await resp.json();
+      const data = await resp2.json();
+      console.log("pidr")
+      console.log(data)
       this.setState({ value: data });
     } else {
       window.location.replace('http://localhost:3101/oauth');
@@ -49,5 +53,12 @@ class VK extends Component {
 }
 
 
+function mapStateToProps(state) {
+  return {
+    user: state.user.login
+  }
+}
 
-export default VK;
+
+
+export default connect(mapStateToProps)(VK)
