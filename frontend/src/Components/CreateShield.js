@@ -60,7 +60,7 @@ export default class CreateShield extends Component {
                 <textarea onChange={this.textarea} id="description" type="text" value={this.state.description} />
                 <input id="img" type="file" onChange={this.img} />
                 <input type="submit" onClick={this.save} />
-                {this.state.imgUrl ? <img src={this.state.imgUrl} width="100" height="100" /> : null}
+                {this.state.imgUrl ? <img src={this.state.imgUrl} width="100" height="100" alt="pict" /> : null}
             </div>
         )
     }

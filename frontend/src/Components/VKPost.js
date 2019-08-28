@@ -9,8 +9,9 @@ class VKPost extends Component {
     const { post } = this.props;
     return (
       <div>
-        <span>Comments: {post.comments.count}</span>
-        <span>Likes: {post.likes.count}</span>
+        <p className='vkstats'>Comments: {post.comments.count}</p>
+        <p className='vkstats'>Likes: {post.likes.count}</p>
+        {post.views ? <p className='vkstats'>Views: {post.views.count}</p> : null}
       </div>
     )
   }
@@ -21,24 +22,31 @@ class VKPost extends Component {
 
     if (!post.attachments) {
       return (
-        <div>Формат не поддерживается</div>
+        <div className='posts'>Формат не поддерживается</div>
       )
     }
 
     if (post.attachments[0].link && post.attachments[0].link.photo) {
       return (
-        <div>
-          <img width='200px' src={post.attachments[0].link.photo.sizes[2].url} />
-          {this.stats}
+        <div className='posts'>
+          <div className='inpost'>
+            <p>Title: {post.attachments[0].link.title}</p>
+            <p>{post.attachments[0].link.description}</p>
+            <img width='200px' src={post.attachments[0].link.photo.sizes[2].url} alt="pict" />
+            <div>{this.stats}</div>
+          </div>
         </div>
       )
     }
 
     if (post.attachments[0].photo) {
       return (
-        <div>
-          <img width='200px' src={post.attachments[0].photo.sizes[2].url} />
-          {this.stats}
+        <div className='posts'>
+          <div className='inpost'>
+            <p>{post.text}</p>
+            <img width='200px' src={post.attachments[0].photo.sizes[2].url} alt="pict" />
+            <div>{this.stats}</div>
+          </div>
         </div>
       )
     }
