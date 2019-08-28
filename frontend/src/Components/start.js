@@ -11,8 +11,8 @@ function Start() {
             <br></br>
             <div className = "mainPage">
             {/* <NavLink activeClassName = {"ActiveBtn"} to="/registration"><button id="firstBtn">Registration</button></NavLink> */}
-            <NavLink activeClassName = {"ActiveBtn"} className="button" to="/registration">Registration</NavLink>
-            <NavLink activeClassName = {"ActiveBtn"} className="button" to="/login">Login</NavLink>
+            <NavLink activeClassName = {"ActiveBtn"} className="button" to="/registration">Sign Up</NavLink>
+            <NavLink activeClassName = {"ActiveBtn"} className="button" to="/login">Sign In</NavLink>
             {/* <NavLink activeClassName = {"ActiveBtn"} to="/login"><button id = "secondBtn"> Login</button></NavLink> */}
  
             <Switch>

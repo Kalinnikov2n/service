@@ -35,7 +35,7 @@
 }
 
 .divPost{
-  background-color: rgba(107, 194, 179, 0.678) ;
+  background-color: rgba(123, 236, 219, 0.281) ;
   min-height: 100vh;
 }
 .sideBar{
@@ -75,34 +75,36 @@
 .posts img{
   border-radius: 5px;
 }
-
+/* rgba(248, 138, 75, 0.801) */
+/* rgba(54, 236, 160, 0.801) */
 .mainPage{
   background-color:rgba(248, 138, 75, 0.801);
   width: 600px;
   margin: 0 auto;
   min-height: 490px; 
-  border-radius: 20px 20px 50px 0;
-  margin-top: 140px; 
+  border-radius: 30% 30% 30% 5px;
+  margin-top: 130px; 
 }
 
 .mainPage .button{
-  width:200px;
+  width:235px;
   height: 50px;
   font-size: 30px;
   border: none;
-  padding: 15px 32px;
+  padding: 15px 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   outline: none;
-  cursor: pointer;
-  margin-top: 20px; 
+  cursor: pointer; 
+  padding-top: 40px; 
 }
-.mainPage button:last-child{
-  height: 70px
-}
+/* .mainPage .button:first-child{
+  padding-left:50px; 
+} */
 .ActiveBtn{
   color:white;
+  font-weight: 1000;
 }
 
 .logReg{
@@ -135,13 +137,27 @@
 }
 .logReg button{
   border-radius: 20px;
-  margin-top: 30px;
-  margin-left: 220px;
+  margin-top: 20px;
+  margin-left: 210px;
+  margin-bottom: 30px;
+  background-color:rgba(223, 209, 200, 0.568);
+  font-size: 30px;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
 }
 
 .logReg button:hover{
   background-color:rgba(109, 5, 170, 0.699);
   color:white;
+  font-weight: 1000;
 }
-
+.logReg .wrong{
+  color: red; 
+  margin-left: 160px;
+}
 

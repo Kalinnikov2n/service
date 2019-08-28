@@ -52,7 +52,7 @@ get = async (e) => {
     return(
       <div className = "logReg">
       <form onSubmit= {this.get}>
-          <span>{this.state.mes}</span>
+          <p className="wrong">{this.state.mes}</p>
       <p>Login</p>
           <input value= {this.state.login}  onChange={this.login}/>
           <p>Password</p>
