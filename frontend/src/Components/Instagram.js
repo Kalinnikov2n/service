@@ -23,7 +23,7 @@ export default class Instagram extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='socPosts'>
                 {this.state.posts ? this.state.posts.map((post,index) => { console.log(post.caption)
                    return <InstPosts key = {index} foto = {post.images.standard_resolution.url} likes = {post.likes.count} comments = {post.comments.count} text={post.caption ? post.caption.text : null}/>
                 }):null}

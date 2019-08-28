@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import Like from '../like.png';
+import View from '../eye.png';
+import Comment from '../comment.png';
+
 
 class VKPost extends Component {
   constructor(props) {
@@ -9,8 +13,9 @@ class VKPost extends Component {
     const { post } = this.props;
     return (
       <div>
-        <span>Comments: {post.comments.count}</span>
-        <span>Likes: {post.likes.count}</span>
+        <span className='stats'><img src={Comment} width={20}/> {post.comments.count}</span>       
+        <span className='stats'><img src={Like} width={20}/> {post.likes.count}</span>
+        {post.views ? <span className='stats'><img src={View} width={20}/> {post.views.count}</span> : null}
       </div>
     )
   }
@@ -21,24 +26,31 @@ class VKPost extends Component {
 
     if (!post.attachments) {
       return (
-        <div>Формат не поддерживается</div>
+        <div className='posts'>Формат не поддерживается</div>
       )
     }
 
     if (post.attachments[0].link && post.attachments[0].link.photo) {
       return (
-        <div>
-          <img width='200px' src={post.attachments[0].link.photo.sizes[2].url} />
-          {this.stats}
+        <div className='posts'>
+          <div className='inpost'>
+            <p>Title: {post.attachments[0].link.title}</p>
+            <p>{post.attachments[0].link.description}</p>
+            <img  className='picture' width='200px' src={post.attachments[0].link.photo.sizes[2].url} alt="pict" />
+            <div>{this.stats}</div>
+          </div>
         </div>
       )
     }
 
     if (post.attachments[0].photo) {
       return (
-        <div>
-          <img width='200px' src={post.attachments[0].photo.sizes[2].url} />
-          {this.stats}
+        <div className='posts'>
+          <div className='inpost'>
+            <p>{post.text}</p>
+            <img  className='picture' width='200px' src={post.attachments[0].photo.sizes[2].url} alt="pict" />
+            <div>{this.stats}</div>
+          </div>
         </div>
       )
     }

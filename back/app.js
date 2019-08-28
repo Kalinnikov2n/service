@@ -41,7 +41,7 @@ app.use(corsMiddleware)
 
 const storage = multer.diskStorage({
   destination: './public/uploads',
-  filename: function(req, file, cb){
+  filename: function (req, file, cb) {
     cb(null, file.name + '-' + Date.now() + path.extname(file.originalname))
   }
 })
@@ -50,38 +50,39 @@ const upload = multer({
   storage: storage,
 }).single('image')
 
-app.post('/', function(req, res){
-  if(req.session){
-  res.json({
-    user :req.session.user
-  })}
-  else{
+app.post('/', function (req, res) {
+  if (req.session) {
+    res.json({
+      user: req.session.user
+    })
+  }
+  else {
     res.json({
       user: false
     })
   }
 })
 
-app.post("/upload", async function(req, res){
+app.post("/upload", async function (req, res) {
   console.log(req.body)
   upload(req, res, async (err) => {
-    if(err){
+    if (err) {
       console.log(err)
     }
     else {
       console.log(req.session.user);
       let url = "http://localhost:3101" + req.file.path.slice(req.file.path.indexOf("/"))
-      let post = new Post({imgUrl: url, user: req.session.user});
+      let post = new Post({ imgUrl: url, user: req.session.user });
       console.log(post)
       await post.save()
-      res.json({postId : post.id});
+      res.json({ postId: post.id });
     }
   })
 })
 
-app.post("/post", async function(req, res){
-  await Post.findOneAndUpdate({_id: req.body.postId}, {$set:{title: req.body.title, description: req.body.description}})
-  console.log(await Post.findOne({_id:req.body.postId }))
+app.post("/post", async function (req, res) {
+  await Post.findOneAndUpdate({ _id: req.body.postId }, { $set: { title: req.body.title, description: req.body.description } })
+  console.log(await Post.findOne({ _id: req.body.postId }))
   res.end()
 })
 
@@ -93,35 +94,35 @@ app.post('/reg', async function (req, res) {
   user.password = user.createHash(req.body.password);
   req.session.user = user.login;
   await user.save();
-  res.json({user:req.session.user})
+  res.json({ user: req.session.user })
 });
 
-app.get("/getPosts", async function(req, res){
-  let posts = await Post.find({user: req.session.user})
-  res.json({posts : posts})
+app.get("/getPosts", async function (req, res) {
+  let posts = await Post.find({ user: req.session.user })
+  res.json({ posts: posts })
 })
 
-app.post('/log', async function(req, res) {
+app.post('/log', async function (req, res) {
   let user = await User.findOne({ login: req.body.login })
-    if (user) {
-        if (user.checkHash(req.body.password)) {
-            req.session.user = user.login
-            res.json({
-                mes: false,
-                user: req.session.user
-            });
-        }
-        else {
-            res.json({
-                mes: "Неправильный пароль"
-            })
-        }
+  if (user) {
+    if (user.checkHash(req.body.password)) {
+      req.session.user = user.login
+      res.json({
+        mes: false,
+        user: req.session.user
+      });
     }
     else {
-        res.json({
-            mes: "неправильный логин"
-        })
+      res.json({
+        mes: "Неправильный пароль"
+      })
     }
+  }
+  else {
+    res.json({
+      mes: "неправильный логин"
+    })
+  }
 })
 
 app.get("/logout", function (req, res) {
@@ -139,11 +140,11 @@ app.get('/instagramtoken', async (req, res) => {
   const { code } = req.query
   //console.log(code)
   const data = {
-      client_id: '63c6a274c99f49bd946935fe18091b62',
-      client_secret: '9302e3334aa549878d4f9ffd83cff32e',
-      grant_type: 'authorization_code',
-      redirect_uri: 'http://localhost:3101/instagramtoken',
-      code: code
+    client_id: '63c6a274c99f49bd946935fe18091b62',
+    client_secret: '9302e3334aa549878d4f9ffd83cff32e',
+    grant_type: 'authorization_code',
+    redirect_uri: 'http://localhost:3101/instagramtoken',
+    code: code
   }
   const formData = Object.keys(data).map((key) => {
     return encodeURIComponent(key) + '=' + encodeURIComponent(data[key]);
@@ -151,20 +152,20 @@ app.get('/instagramtoken', async (req, res) => {
 
   //console.log(formData)
 
-const resp = await fetch(`https://api.instagram.com/oauth/access_token`, {
+  const resp = await fetch(`https://api.instagram.com/oauth/access_token`, {
     method: "POST",
     headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
+      "Accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
     },
     body: formData
-});
-const respData = await resp.json()
-//console.log(respData)
-const { access_token } = respData;
-//console.log('acces_token', access_token)
+  });
+  const respData = await resp.json()
+  //console.log(respData)
+  const { access_token } = respData;
+  //console.log('acces_token', access_token)
 
-const user = await User.findOne({login: req.session.user})
+  const user = await User.findOne({ login: req.session.user })
   user.tokenInst = access_token
   await user.save()
 
@@ -174,23 +175,23 @@ const user = await User.findOne({login: req.session.user})
 res.redirect('http://localhost:3000/instagram')
 })
 
-app.get('/boolInst', async (req,res) => {
-    const user = await User.findOne({login: req.session.user})
-    let boolToken = false
-    const instToken = user.tokenInst
-    if(instToken){
-      boolToken = true
-    }
-    else{
-      boolToken = false
-    }
-    const posts = await fetch(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${instToken}`)
-const postsData = await posts.json()
+app.get('/boolInst', async (req, res) => {
+  const user = await User.findOne({ login: req.session.user })
+  let boolToken = false
+  const instToken = user.tokenInst
+  if (instToken) {
+    boolToken = true
+  }
+  else {
+    boolToken = false
+  }
+  const posts = await fetch(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${instToken}`)
+  const postsData = await posts.json()
 
-    res.json({
-      postsData: postsData.data,
-      boolToken: boolToken
-    })
+  res.json({
+    postsData: postsData.data,
+    boolToken: boolToken
+  })
 })
 
 app.listen(port, function () {
@@ -199,7 +200,7 @@ app.listen(port, function () {
 
 
 // VKontakte getting token - step 1
-app.get('/oauth', (req, res) => {	
+app.get('/oauth', (req, res) => {
   res.redirect('https://oauth.vk.com/authorize?client_id=7110854&display=page&redirect_uri=http://localhost:3101/vk_code&scope=wall&response_type=code&v=5.101&state=123456')
 })
 // VKontakte getting token - step 2
@@ -222,10 +223,9 @@ app.get('/vk_code', async (req, res) => {
 
 // VKontakte checking token
 app.get('/vkCheckToken', async (req, res) => {
-  let user = await User.findOne({login: req.session.user});
-  console.log(user)
+  let user = await User.findOne({ login: req.session.user });
   let checkToken;
-  if(user.vkToken) {
+  if (user.vkToken) {
     checkToken = true;
   } else {
     checkToken = false;
@@ -237,13 +237,14 @@ app.get('/vkCheckToken', async (req, res) => {
 
 // VKontakte get wall post with stats
 app.get('/wallGet', async (req, res) => {
-  let user = await User.findOne({login: req.session.user});
+  let user = await User.findOne({ login: req.session.user });
   const resp = await fetch(`https://api.vk.com/method/wall.get?owner_id=${user.vkId}&filter=owner&count=20&access_token=${user.vkToken}&v=5.101`, {
-      headers: {
-        "Accept": "application/json"
-      }
-    });
-    const data = await resp.json();
-    console.log(data)
-    res.json(data.response.items);
+    headers: {
+      "Accept": "application/json"
+    }
+  });
+  const data = await resp.json();
+  console.log(data)
+  res.json(data.response.items);
+  // res.end()
 });

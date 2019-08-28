@@ -76,12 +76,39 @@
 }
 .posts{
   display: inline-flex;
-  width:350px;
+  width:340px;
+  height: auto;
   justify-content: space-around;
   margin: 10px auto;
+  /* box-shadow: 3px 3px 5px; */
+  margin: 10px;
+  align-items: center;
+  padding: 20px;
+  border-radius: 2px;
 }
-.posts img{
-  border-radius: 5px;
+.posts .picture{
+  border-radius: 3px;
+  box-shadow: 0 3px 5px rgb(92, 90, 90);
+  margin-bottom: 20px
+}
+
+.posts p {
+  width: 250px;
+  font-size: 20px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+.socPosts {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stats {
+  margin: 10px;
+}
+
+.inpost {
+  margin-left: 40px;
 }
 /* rgba(248, 138, 75, 0.801) */
 /* rgba(54, 236, 160, 0.801) */
@@ -169,11 +196,5 @@
   margin-left: 160px;
 }
 
-/* .servicePosts{
-  background-color: #282c3463;
-  margin: 0 auto;
-  width:80%;
-  height: 85vh;
-  margin-top: 50px;
-  margin-left: 100px;
-} */
+
+
