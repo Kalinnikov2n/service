@@ -12,19 +12,22 @@ import Background from './back.png';
 class App extends Component {
 
   async componentDidMount() {
-    let resp = await fetch("/", {
-      method: "POST",
-      credentials: 'include',
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
+    if(!this.props.user){
+      let resp = await fetch("/", {
+        method: "POST",
+        credentials: 'include',
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        }
+      })
+      let us = await resp.json();
+      if (us.user) {
+        await this.props.add(us.user)
       }
-    })
-    let us = await resp.json();
-    if (us.user) {
-      await this.props.add(us.user)
     }
-  }
+    }
+   
   render() {
     return (
       <Router>
