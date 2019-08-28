@@ -45,7 +45,7 @@ class VK extends Component {
     return (
       <div className='socPosts'>
         {this.state.value.map((item, index) =>
-          <VKPost post={item} key={index} />
+           <VKPost post={item} key={index} />
         )}
       </div>
     )

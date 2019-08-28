@@ -16,8 +16,8 @@ export default class InstPosts extends Component {
                             <img className='picture' src={this.props.foto} width="200px" alt="pict" />}
                     </div>
                     <div className='block'>
-                        <span className='stats'><img src={Like} width={20} /> {this.props.likes}</span>
-                        <span className='stats'><img src={Comment} width={20} /> {this.props.comments}</span>
+                        <span className='stats'><img src={Like} width={30} /> {this.props.likes}</span>
+                        <span className='stats'><img src={Comment} width={30} /> {this.props.comments}</span>
                     </div>
                     <p>{this.props.text}</p>
                 </div>
