@@ -5,20 +5,43 @@ class VKPost extends Component {
     super(props)
   }
 
-  render() {
-    console.log(this.props.post)
+  get stats() {
+    const { post } = this.props;
     return (
       <div>
-        {/* <div><img src={this.props.post.attachments[0].photo.sizes[2].url} /></div> */}
-        {this.props.post.attachments[0].link ?
-          <div><img width='200px' src={this.props.post.attachments[0].link.photo.sizes[2].url} /></div> :
-          <div><img width='200px' src={this.props.post.attachments[0].photo.sizes[2].url} /></div>}
-        <div>
-          <span>Comments: {this.props.post.comments.count}</span>
-          <span>Likes: {this.props.post.likes.count}</span>
-        </div>
+        <span>Comments: {post.comments.count}</span>
+        <span>Likes: {post.likes.count}</span>
       </div>
     )
+  }
+
+  render() {
+    console.log(this.props.post)
+    const { post } = this.props;
+
+    if (!post.attachments) {
+      return (
+        <div>Формат не поддерживается</div>
+      )
+    }
+
+    if (post.attachments[0].link && post.attachments[0].link.photo) {
+      return (
+        <div>
+          <img width='200px' src={post.attachments[0].link.photo.sizes[2].url} />
+          {this.stats}
+        </div>
+      )
+    }
+
+    if (post.attachments[0].photo) {
+      return (
+        <div>
+          <img width='200px' src={post.attachments[0].photo.sizes[2].url} />
+          {this.stats}
+        </div>
+      )
+    }
   }
 }
 
