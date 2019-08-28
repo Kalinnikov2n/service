@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import InstPosts from './InstPosts';
+import {connect} from 'react-redux'
 
-export default class Instagram extends Component {
+ class Instagram extends Component {
 
     constructor(props){
         super(props)
@@ -11,10 +12,10 @@ export default class Instagram extends Component {
     }
 
     componentDidMount = async() => {
-        const resp = await fetch('/boolInst')
+        const resp = await fetch(`http://localhost:3101/boolInst?user=${this.props.user}`)
       const data = await resp.json()
       if(data.boolToken === false){
-        window.location.replace("http://localhost:3101/instagram")
+        window.location.replace(`http://localhost:3101/instagram?user=${this.props.user}`)
       }
       console.log(data.postsData)
       this.setState({
@@ -31,3 +32,13 @@ export default class Instagram extends Component {
         )
     }
 }
+function mapStateToProps(state) {
+    return {
+      user: state.user.login
+    }
+  }
+  
+  
+  
+  export default connect(mapStateToProps)(Instagram)
+  

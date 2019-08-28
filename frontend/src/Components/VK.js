@@ -13,7 +13,7 @@ class VK extends Component {
 
 
   componentDidMount = async () => {
-    const resp = await fetch('/vkCheckToken', {
+    const resp = await fetch('http://localhost:3101/vkCheckToken', {
       credentials: 'include',
       headers: {
         "Accept": "application/json",

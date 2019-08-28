@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/service', { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://ka_ll:kmn6114786@cluster0-dhab9.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
 const bcrypt = require("bcrypt")
 
 const userSchema = new mongoose.Schema(
