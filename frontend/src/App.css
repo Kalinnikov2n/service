@@ -2,6 +2,8 @@
 .App {
   text-align: center;
   height: 100vh;
+  font-family: 'Arvo', serif;
+  font-weight: 600;
 }
 
 .App-logo {
@@ -56,36 +58,66 @@
   widows: 150px;
   top:10%;
   right: 0;
-  height: 100%;
   align-items: left;
+  display:flex;
+  flex-direction: column;
+  margin-top:60px;
 }
-.sideBar ul{
-  list-style: none;
+.sideBar img{
+  margin-bottom: 20px;
 }
-.sideBar li{
-  margin-bottom: 50px;
-}
+
 .sideBar .faceInst{
   margin-left:20px;
 }
 
 
 .navBar{
-  background-color: rgba(180, 201, 106, 0.678);
   position: fixed;
-  top: 0;
-  right: 8.7%;
+  top: 20px;
+  right: 50px;
+  font-size:25px;
+  border-radius: 20px;
 }
-.navBarSmall{
-  width:100px;
-  padding: 10px;
-  border-radius: 20px
+
+.navBar div{
+  width:200px;
+  height: auto;
+  
+}
+
+.navBar span{
+  margin-right:20px;
+  margin-bottom:10px; 
+  float:right;
+  color:white;
+  font-weight: 600;
+}
+
+.navBar button{
+  float:right;
+  border-radius: 20px;
+  background-color:rgba(223, 209, 200, 0.568);
+  font-size: 20px;
+  border: none;
+  font-weight: 600;
+  padding: 10px 25px;
+  width:150px;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+}
+.navBar button:hover{
+  background-color:rgba(109, 5, 170, 0.699);
+  color:white;
+  font-weight: 1000;
 }
 .posts{
   background-color: rgba(248, 247, 247, 0.993); 
   display: inline-flex;
   border-radius: 20px;
-  overflow: auto;
+  overflow: hidden;
   width:298px;
   height: auto;
   justify-content: space-around;

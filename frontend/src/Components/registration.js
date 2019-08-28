@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 // import './App.css';
 import { addUser } from '../redux/actions';
 import {connect} from 'react-redux'
+import { zoomIn } from 'react-animations';
+import styled, { keyframes } from 'styled-components';
+
+const Bounce = styled.div`animation: 1s ${keyframes`${zoomIn}`} `;
 
 
 class Registration extends Component {
@@ -43,6 +47,7 @@ get = async (e) => {
   render(){
     return(
       <div className = "logReg">
+        <Bounce>
       <form onSubmit= {this.get}>
           <p>Login</p>
           <input value= {this.state.login} onChange={this.login}/>
@@ -50,6 +55,7 @@ get = async (e) => {
           <input value={this.state.password} onChange={this.password} type= "password"/>
           <button type="submit" >Sign Up</button>
       </form>
+      </Bounce>
       </div>
     )
   }
