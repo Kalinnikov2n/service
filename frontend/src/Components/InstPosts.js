@@ -8,14 +8,22 @@ export default class InstPosts extends Component {
         return (
             <div className="posts">
                 <div className='inpost'>
-                    <p>{this.props.text}</p>
-                    <img className='picture' src={this.props.foto} width="200px" alt="pict" />
-                    <div>
+                    <div className="imgPic">
+                        {this.props.typeContent === 'video' ?
+                            <video controls="controls" width='200' height='250'   poster={this.props.imgLink}>
+                                <source src={this.props.videoLink} />
+                            </video> :
+                            <img className='picture' src={this.props.foto} width="200px" alt="pict" />}
+                    </div>
+                    <div className='block'>
                         <span className='stats'><img src={Like} width={20} /> {this.props.likes}</span>
                         <span className='stats'><img src={Comment} width={20} /> {this.props.comments}</span>
                     </div>
+                    <p>{this.props.text}</p>
                 </div>
             </div>
         )
     }
 }
+
+//low_bandwidth
