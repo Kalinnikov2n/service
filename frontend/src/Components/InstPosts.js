@@ -8,7 +8,8 @@ export default class InstPosts extends Component {
         return (
             <div className="posts">
                 <div className='inpost'>
-                    <img   className='picture' src={this.props.foto} width="200px" alt="pict" />
+                    <p>{this.props.text}</p>
+                    <img className='picture' src={this.props.foto} width="200px" alt="pict" />
                     <div>
                         <span className='stats'><img src={Like} width={20} /> {this.props.likes}</span>
                         <span className='stats'><img src={Comment} width={20} /> {this.props.comments}</span>

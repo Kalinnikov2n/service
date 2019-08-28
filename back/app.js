@@ -169,10 +169,10 @@ app.get('/instagramtoken', async (req, res) => {
   user.tokenInst = access_token
   await user.save()
 
-  // const posts = await fetch(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${access_token}`)
-  // const postsData = await posts.json()
-  // console.log('postData', postsData)
-  res.redirect('http://localhost:3000/instgram')
+// const posts = await fetch(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${access_token}`)
+// const postsData = await posts.json()
+// console.log('postData', postsData)
+res.redirect('http://localhost:3000/instagram')
 })
 
 app.get('/boolInst', async (req, res) => {
@@ -213,8 +213,8 @@ app.get('/vk_code', async (req, res) => {
     user.vkId = user_id;
     user.vkToken = access_token;
     await user.save();
-    console.log(access_token);
-    console.log(user_id);
+    // console.log(access_token);
+    // console.log(user_id);
     res.redirect('http://localhost:3000/VK');
   } catch (rerror) {
     res.status(404);

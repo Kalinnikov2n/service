@@ -22,9 +22,11 @@ export default class ServicePosts extends Component {
     render() {
         return (
             <div>
+                <div >
                 <button onClick={this.getModale}>get new Post</button>
                 {this.state.modal ? <CreateShield getModale={this.getModale}/> : null}
                 {this.state.posts.map(el => <ServicePost img= {el.imgUrl} title={el.title} description={el.description} id={el._id}/>)}
+                </div>
             </div>
         )
     }
