@@ -35,19 +35,18 @@
 }
 
 .divPost{
-  background-color: rgba(123, 236, 219, 0.281) ;
   min-height: 100vh;
 }
 .divPost .divPostBack{
   overflow: auto;
   -webkit-overflow-style: none;
-  background-color: rgba(248, 138, 75, 0.411);
+  background-color: rgba(250, 117, 40, 0.411);
   margin: 0 auto;
   width:70%;
   height: 85vh;
   margin-top: 50px;
   margin-right: 280px; 
-  border-radius: 15px;
+  border-radius: 3%;
 }
 ::-webkit-scrollbar { 
   display: none; 
@@ -204,6 +203,22 @@
   color: red; 
   margin-left: 160px;
 }
+.addBtn img{
+  margin-left: 45%;
+}
 
+.postsWisDiv{
+  display:flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.postsWis{
+  width:200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 

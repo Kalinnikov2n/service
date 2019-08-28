@@ -18,7 +18,7 @@ export default class ServicePost extends Component {
 
     render() {
         return (
-            <div>
+            <div className = "postsWis">
                 <Helmet>
                 <meta property="og:title" content={this.props.title} />
                 <meta property="og:description" content={this.props.description} />
