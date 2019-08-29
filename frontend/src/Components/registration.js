@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 // import './App.css';
-import { addUser } from '../redux/actions';
+import { addUser, addId } from '../redux/actions';
 import {connect} from 'react-redux'
 
 
@@ -60,6 +60,7 @@ get = async (e) => {
 function mapDispatchToProps(dispatch) {
   return {
     add: (user) => dispatch( addUser(user) ),
+    addId: (id) => dispatch( addId(id) ),
   }
 }
 

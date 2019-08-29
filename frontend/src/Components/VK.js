@@ -33,7 +33,6 @@ class VK extends Component {
         }
       });
       const data = await resp2.json();
-      console.log("pidr")
       console.log(data)
       this.setState({ value: data });
     } else {

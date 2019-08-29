@@ -21,7 +21,7 @@ class VKPost extends Component {
   }
 
   render() {
-    console.log(this.props.post)
+    // console.log(this.props.post)
     const { post } = this.props;
 
     if (!post.attachments) {

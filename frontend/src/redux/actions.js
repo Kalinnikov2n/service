@@ -1,4 +1,4 @@
-import {ADD_USER, DEL_USER} from './types'
+import {ADD_USER, DEL_USER, ADD_ID} from './types'
 
 const addUser = (login) => {
   return {
@@ -12,8 +12,14 @@ const delUser = () => {
     type: DEL_USER
   }
 };
+ 
+const addId = (id) => {
+  return {
+    type: ADD_ID,
+    id: id
+  }
+};
 
 
 
-
-export { addUser, delUser };
+export { addUser, delUser, addId };

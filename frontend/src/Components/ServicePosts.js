@@ -11,8 +11,12 @@ export default class ServicePosts extends Component {
             posts:[]
         }
     }
-    getModale = () =>{
+    getModale = async() =>{
         this.setState({modal : !this.state.modal})
+        let resp = await fetch("/getPosts");
+        let posts = await resp.json();
+        console.log(posts)
+        this.setState({posts:posts.posts})
     }
     async componentDidMount(){
         let resp = await fetch("/getPosts");
