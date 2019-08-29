@@ -27,9 +27,11 @@ class Navbar extends Component {
   render(){
     return(
       <div className="navBar">
-        <div className = "navBarSmall">
+        {/* <input type= "file" onChange={this.show}></input>
+        <img src = {this.state.img}></img> */}
+        <div>
         <span> {this.props.user}</span>
-        <span> <button onClick={this.logOut}> log out</button></span>
+        <button onClick={this.logOut}>Log out</button>
         </div>
       </div>
     )

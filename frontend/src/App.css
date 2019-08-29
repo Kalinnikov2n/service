@@ -2,6 +2,8 @@
 .App {
   text-align: center;
   height: 100vh;
+  font-family: 'Arvo', serif;
+  font-weight: 600;
 }
 
 .App-logo {
@@ -40,7 +42,7 @@
 .divPost .divPostBack{
   overflow: auto;
   -webkit-overflow-style: none;
-  background-color: rgba(250, 117, 40, 0.411);
+  background-color: rgba(250, 117, 40, 0);
   margin: 0 auto;
   width:70%;
   height: 85vh;
@@ -56,69 +58,135 @@
   widows: 150px;
   top:10%;
   right: 0;
-  height: 100%;
   align-items: left;
+  display:flex;
+  flex-direction: column;
+  margin-top:60px;
 }
-.sideBar ul{
-  list-style: none;
+.sideBar img{
+  margin-bottom: 20px;
 }
-.sideBar li{
-  margin-bottom: 50px;
-}
+
 .sideBar .faceInst{
   margin-left:20px;
 }
 
 
 .navBar{
-  background-color: rgba(180, 201, 106, 0.678);
   position: fixed;
-  top: 0;
-  right: 8.7%;
+  top: 20px;
+  right: 50px;
+  font-size:25px;
+  border-radius: 20px;
 }
-.navBarSmall{
-  width:100px;
-  padding: 10px;
-  border-radius: 20px
+
+.navBar div{
+  width:200px;
+  height: auto;
+  
+}
+
+.navBar span{
+  margin-right:20px;
+  margin-bottom:10px; 
+  float:right;
+  color:white;
+  font-weight: 600;
+}
+
+.navBar button{
+  float:right;
+  border-radius: 20px;
+  background-color:rgba(223, 209, 200, 0.568);
+  font-size: 20px;
+  border: none;
+  font-weight: 600;
+  padding: 10px 25px;
+  width:150px;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+}
+.navBar button:hover{
+  background-color:rgba(109, 5, 170, 0.699);
+  color:white;
+  font-weight: 1000;
 }
 .posts{
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(248, 247, 247, 0.993); 
+  border-radius: 20px;
+  overflow: hidden;
   width:298px;
-  height: auto;
+  height: 324px;
   justify-content: space-around;
   margin: 10px auto;
-  /* box-shadow: 3px 3px 5px; */
-  align-items: flex-start;
-  border-radius: 2px;
+  box-shadow: 3px 3px 5px;
+  /* align-items: center; */
+  background-color: rgba(255, 255, 255, 0.63);
 }
+
+.block{
+  margin-left: 50px;
+  margin-top:20px;
+  margin-bottom: 10px;
+}
+
+.inpost {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 30px;
+  border-radius: 2px;
+  overflow: auto;
+  height: 230px;
+}
+
 .posts .picture{
+  border-radius: 3px;
+  box-shadow: 0 3px 5px rgb(92, 90, 90);
+  /* margin-bottom: 15px; */
+}
+
+.video {
   border-radius: 3px;
   box-shadow: 0 3px 5px rgb(92, 90, 90);
 }
 
 .posts p {
-  width: 250px;
-  font-size: 20px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+  width: 180px;
+  font-size: 15px;
+  font-family: 'Gayathri', sans-serif;
+  font-family: 'Neucha', cursive;
+  font-family: 'Exo 2', sans-serif;
+
+}
+
+.underPicture {
+  width: 200px;
+  /* background-color: antiquewhite;
+  border-radius: 2px; */
 }
 
 .socPosts {
   display: flex;
   flex-wrap: wrap;
 }
+/* .stats:first-child {
+  margin-right: 100px;
+  margin-left: 50px;
+} */
 
-.stats {
-  margin: 10px;
+.stats{
+  font-size: 20px;
+  margin-right: 20px
 }
 
-.inpost {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  /* margin-left: 40px; */
-  margin: 0 auto;
-  margin-top: 30px;
-}
+
 /* rgba(248, 138, 75, 0.801) */
 /* rgba(54, 236, 160, 0.801) */
 .mainPage{
@@ -223,9 +291,11 @@
 }
 
 
-.imgPic {
+/* .imgPic {
   display: flex;
   align-items: center;
   width: 200px; 
   height: 250px;
-}
+} */
+
+

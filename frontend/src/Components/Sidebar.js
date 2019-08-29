@@ -14,12 +14,10 @@ export class Sidebar extends Component {
   render() {
     return (
       <div className = "sideBar">
-        <ul>
-       <li><Link to="/servicePosts" ><img  src = {Wis} width = "250px"/></Link></li>
-       <li><Link to="/VK"><img src = {Vk} width = "230px"/></Link></li>
-       <li><Link to="/facebook"><img  src = {Face} width = "180px" className="faceInst"/></Link></li>
-       <li><Link to="/instagram"><img src = {Inst} width = "180px"className="faceInst"/></Link></li>
-      </ul>
+       <Link to="/servicePosts" ><img src = {Wis} width = "250px"/></Link>
+       <Link to="/VK"><img src = {Vk} width = "230px"/></Link>
+       <Link to="/facebook"><img src = {Face} width = "180px" className="faceInst"/></Link>
+       <Link to="/instagram"><img src = {Inst} width = "180px"className="faceInst"/></Link>
       </div>
     )
   }

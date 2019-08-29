@@ -4,13 +4,15 @@
   "private": true,
   "dependencies": {
     "react": "^16.9.0",
+    "react-animations": "^1.0.0",
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
     "react-yandex-share": "^1.0.5",
-    "redux": "^4.0.4"
+    "redux": "^4.0.4",
+    "styled-components": "^4.3.2"
   },
   "proxy": "https://wis-elbrus.herokuapp.com",
   "scripts": {

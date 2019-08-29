@@ -25,11 +25,6 @@ class App extends Component {
       let us = await resp.json();
       if (us.user) {
         await this.props.add(us.user)
-        await window.FB.login( (response) => {
-          if (response.authResponse) {
-              this.props.addId(response.authResponse.userID)
-          }  
-      }, { scope: "user_posts" })
       
       }
     }
@@ -82,7 +77,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     add: (login) => dispatch(addUser(login)),
-    addId: (id) => dispatch( addId(id) ),
   }
 }
 

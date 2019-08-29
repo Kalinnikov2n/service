@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 // import './App.css';
 import { addUser, addId } from '../redux/actions';
 import {connect} from 'react-redux'
+import { zoomIn } from 'react-animations';
+import styled, { keyframes } from 'styled-components';
+
+const Bounce = styled.div`animation: 1s ${keyframes`${zoomIn}`} `;
 
 
 class Registration extends Component {
@@ -39,10 +43,57 @@ get = async (e) => {
       window.location.assign("/servicePosts")
 
 }
+
+fb = async(e) =>{
+  let id;
+  let name;
+  await window.FB.login( (response) => {
+    if (response.authResponse) {
+      console.log(response)
+      id = response.authResponse.userID;
+        this.props.addId(response.authResponse.userID)
+    }  
+     window.FB.api(`/${id}`, async (response) => {
+      if (!response || response.error) {
+        console.log(response)
+      } else {
+          console.log(response)
+          name = response.name;
+          this.props.add(response.name)
+          let data = {
+            login : name,
+            password: "123"
+          }
+          let resp = await fetch("/reg", {
+            method: "POST",
+            headers: {
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+          })
+          let user = await resp.json();
+          console.log("hi")
+          // window.location.assign("/servicePosts")
+          // this.props.add(user.user)
+          // window.location.assign("/servicePosts")
+          
+      }
+      
+    
+    });
+}, { scope: "user_posts, email" })
+
+// window.location.assign("/servicePosts")
+console.log(name)
+
+
+}
   
   render(){
     return(
       <div className = "logReg">
+        <Bounce>
       <form onSubmit= {this.get}>
           <p>Login</p>
           <input value= {this.state.login} onChange={this.login}/>
@@ -50,6 +101,8 @@ get = async (e) => {
           <input value={this.state.password} onChange={this.password} type= "password"/>
           <button type="submit" >Sign Up</button>
       </form>
+      <span onClick={this.fb}>Continue with Facebook</span>
+      </Bounce>
       </div>
     )
   }

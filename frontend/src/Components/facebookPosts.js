@@ -26,7 +26,7 @@ class FacebookPosts extends React.Component {
     render() {
         // console.log(this.state.posts)
         return (
-            <div>
+            <div className='socPosts'>
                 {/* <FacebookPost id={this.props.posts.id}/> */}
                {this.state.posts ?  this.state.posts.map(el=>(<FacebookPost id={el.id}/>)): null}
             </div>

@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
-import { addUser } from '../redux/actions';
+import { addUser, addId } from '../redux/actions';
 import {connect} from 'react-redux'
+import { zoomIn } from 'react-animations';
+import styled, { keyframes } from 'styled-components';
+
+const Bounce = styled.div`animation: 1s ${keyframes`${zoomIn}`} `;
 
 
 class Login extends Component {
@@ -47,10 +51,45 @@ get = async (e) => {
       }
 
 }
-  
+
+fb = async(e) =>{
+  let id;
+  let name;
+  await window.FB.login( (response) => {
+    if (response.authResponse) {
+      id = response.authResponse.userID;
+        this.props.addId(response.authResponse.userID)
+    }  
+}, { scope: "user_posts" })
+await window.FB.api(`/${id}?fields=id,name`, (response) => {
+  if (!response || response.error) {
+  } else {
+      console.log(response)
+      name = response.name;
+      this.props.add(response.name)
+  }
+});
+let data = {
+  login : name,
+  password: ""
+}
+let resp = await fetch("/reg", {
+  method: "POST",
+  headers: {
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(data)
+})
+let user = await resp.json();
+this.props.add(user.user)
+window.location.assign("/servicePosts")
+
+}
   render(){
     return(
       <div className = "logReg">
+        <Bounce>
       <form onSubmit= {this.get}>
           <p className="wrong">{this.state.mes}</p>
       <p>Login</p>
@@ -59,6 +98,8 @@ get = async (e) => {
           <input value={this.state.password} onChange={this.password} type= "password"/>
           <button type="submit" >Sign In</button>
       </form>
+      <span onClick={this.fb}>Continue with Facebook</span>
+      </Bounce>
       </div>
     )
   }
@@ -69,6 +110,7 @@ get = async (e) => {
 function mapDispatchToProps(dispatch) {
   return {
     add: (user) => dispatch( addUser(user) ),
+    addId: (id) => dispatch( addId(id) ),
   }
 }
 
