@@ -10,10 +10,11 @@ const cookieParser = require('cookie-parser');
 let session = require('express-session')
 const FileStore = require("session-file-store")(session)
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/game', { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://ka_ll:kmn6114786@cluster0-dhab9.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
 const bcrypt = require("bcrypt")
 const multer = require('multer')
 const fs = require("fs")
+let profile = "";
 
 
 let sessionConfig = {
@@ -50,89 +51,11 @@ const upload = multer({
   storage: storage,
 }).single('image')
 
-app.post('/', function (req, res) {
-  if (req.session) {
-    res.json({
-      user: req.session.user
-    })
-  }
-  else {
-    res.json({
-      user: false
-    })
-  }
-})
 
-app.post("/upload", async function (req, res) {
-  console.log(req.body)
-  upload(req, res, async (err) => {
-    if (err) {
-      console.log(err)
-    }
-    else {
-      console.log(req.session.user);
-      let url = "http://localhost:3101" + req.file.path.slice(req.file.path.indexOf("/"))
-      let post = new Post({ imgUrl: url, user: req.session.user });
-      console.log(post)
-      await post.save()
-      res.json({ postId: post.id });
-    }
-  })
-})
-
-app.post("/post", async function (req, res) {
-  await Post.findOneAndUpdate({ _id: req.body.postId }, { $set: { title: req.body.title, description: req.body.description } })
-  console.log(await Post.findOne({ _id: req.body.postId }))
-  res.end()
-})
-
-//авторизация
-app.post('/reg', async function (req, res) {
-  let user = new User({
-    login: req.body.login
-  })
-  user.password = user.createHash(req.body.password);
-  req.session.user = user.login;
-  await user.save();
-  res.json({ user: req.session.user })
-});
-
-app.get("/getPosts", async function (req, res) {
-  let posts = await Post.find({ user: req.session.user })
-  res.json({ posts: posts })
-})
-
-app.post('/log', async function (req, res) {
-  let user = await User.findOne({ login: req.body.login })
-  if (user) {
-    if (user.checkHash(req.body.password)) {
-      req.session.user = user.login
-      res.json({
-        mes: false,
-        user: req.session.user
-      });
-    }
-    else {
-      res.json({
-        mes: "Неправильный пароль"
-      })
-    }
-  }
-  else {
-    res.json({
-      mes: "неправильный логин"
-    })
-  }
-})
-
-app.get("/logout", function (req, res) {
-  req.session.destroy();
-  res.end();
-})
 //instagram
 app.get('/instagram', (req, res) => {
   //console.log("k")
-  res.redirect('https://api.instagram.com/oauth/authorize/?client_id=63c6a274c99f49bd946935fe18091b62&redirect_uri=http://localhost:3101/instagramtoken&response_type=code')
+  res.redirect(`https://api.instagram.com/oauth/authorize/?client_id=63c6a274c99f49bd946935fe18091b62&redirect_uri=http://localhost:3101/instagramtoken&response_type=code`)
   //console.log("+++++")
 })
 
@@ -143,14 +66,14 @@ app.get('/instagramtoken', async (req, res) => {
     client_id: '63c6a274c99f49bd946935fe18091b62',
     client_secret: '9302e3334aa549878d4f9ffd83cff32e',
     grant_type: 'authorization_code',
-    redirect_uri: 'http://localhost:3101/instagramtoken',
-    code: code
+    redirect_uri: `http://localhost:3101/instagramtoken`,
+    code: code,
   }
   const formData = Object.keys(data).map((key) => {
     return encodeURIComponent(key) + '=' + encodeURIComponent(data[key]);
   }).join('&');
 
-  //console.log(formData)
+  
 
   const resp = await fetch(`https://api.instagram.com/oauth/access_token`, {
     method: "POST",
@@ -161,22 +84,20 @@ app.get('/instagramtoken', async (req, res) => {
     body: formData
   });
   const respData = await resp.json()
-  //console.log(respData)
+  console.log(respData);
   const { access_token } = respData;
-  //console.log('acces_token', access_token)
+  
 
-  const user = await User.findOne({ login: req.session.user })
+  const user = await User.findOne({ login: profile })
   user.tokenInst = access_token
   await user.save()
 
-// const posts = await fetch(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${access_token}`)
-// const postsData = await posts.json()
-// console.log('postData', postsData)
-res.redirect('http://localhost:3000/instagram')
+res.redirect(`http://localhost:3000/instagram`)
 })
 
 app.get('/boolInst', async (req, res) => {
-  const user = await User.findOne({ login: req.session.user })
+  const user = await User.findOne({ login: req.query.user})
+  profile = req.query.user;
   let boolToken = false
   const instToken = user.tokenInst
   if (instToken) {
@@ -209,7 +130,7 @@ app.get('/vk_code', async (req, res) => {
     const { code } = req.query;
     const response = await fetch(`https://oauth.vk.com/access_token?client_id=7110854&client_secret=YfdX13jLLBZqZz6L2cax&redirect_uri=http://localhost:3101/vk_code&code=${code}`)
     const { access_token, user_id } = await response.json();
-    let user = await User.findOne({ login: req.session.user });
+    let user = await User.findOne({ login: profile });
     user.vkId = user_id;
     user.vkToken = access_token;
     await user.save();
@@ -222,8 +143,15 @@ app.get('/vk_code', async (req, res) => {
 });
 
 // VKontakte checking token
-app.get('/vkCheckToken', async (req, res) => {
-  let user = await User.findOne({ login: req.session.user });
+app.get("/try", function(req, res){
+  profile = req.query.user
+  console.log("try");
+  res.end();
+})
+
+app.get('/vkCheck', async (req, res) => {
+  console.log("hi");
+  let user = await User.findOne({ login: profile });
   let checkToken;
   if (user.vkToken) {
     checkToken = true;
@@ -237,7 +165,7 @@ app.get('/vkCheckToken', async (req, res) => {
 
 // VKontakte get wall post with stats
 app.get('/wallGet', async (req, res) => {
-  let user = await User.findOne({ login: req.session.user });
+  let user = await User.findOne({ login: profile });
   const resp = await fetch(`https://api.vk.com/method/wall.get?owner_id=${user.vkId}&filter=owner&count=20&access_token=${user.vkToken}&v=5.101`, {
     headers: {
       "Accept": "application/json"

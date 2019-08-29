@@ -47,9 +47,9 @@ class Navbar extends Component {
       <div className="navBar">
         {/* <input type= "file" onChange={this.show}></input>
         <img src = {this.state.img}></img> */}
-        <div className = "navBarSmall">
+        <div>
         <span> {this.props.user}</span>
-        <span> <button onClick={this.logOut}> log out</button></span>
+        <button onClick={this.logOut}>Log out</button>
         </div>
       </div>
     )

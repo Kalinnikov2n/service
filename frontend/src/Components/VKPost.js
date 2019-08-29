@@ -21,12 +21,32 @@ class VKPost extends Component {
   }
 
   render() {
-    console.log(this.props.post)
+    // console.log(this.props.post)
     const { post } = this.props;
+    console.log("apowkdpokwapod",post)
+
+    if (post.copy_history && post.copy_history[0].text) {
+      return (
+        <div>
+          <p>
+            {post.copy_history[0].text}
+          </p>
+        </div>
+      )
+    }
+
+    if (post.copy_history && post.copy_history[0].attachments && post.copy_history[0].attachments[0].photo ) {
+      return (
+        <div>
+            {console.log("++++++++++++++++++++++")}
+          <img src={post.copy_history[0].attachments[0].photo.sizes[0].url}/>
+        </div>
+      )
+    }
 
     if (!post.attachments) {
       return (
-        <div className='posts'>Формат не поддерживается</div>
+        <div className='posts'></div>
       )
     }
 
