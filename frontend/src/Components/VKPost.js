@@ -13,9 +13,9 @@ class VKPost extends Component {
     const { post } = this.props;
     return (
       <div>
-        <span className='stats'><img src={Comment} width={20}/> {post.comments.count}</span>       
-        <span className='stats'><img src={Like} width={20}/> {post.likes.count}</span>
-        {post.views ? <span className='stats'><img src={View} width={20}/> {post.views.count}</span> : null}
+        <span className='stats'><img src={Comment} width={20} /> {post.comments.count}</span>
+        <span className='stats'><img src={Like} width={20} /> {post.likes.count}</span>
+        {post.views ? <span className='stats'><img src={View} width={20} /> {post.views.count}</span> : null}
       </div>
     )
   }
@@ -34,11 +34,13 @@ class VKPost extends Component {
       return (
         <div className='posts'>
           <div className='inpost'>
-            <p>Title: {post.attachments[0].link.title}</p>
-            <p>{post.attachments[0].link.description}</p>
-            <img  className='picture' width='200px' src={post.attachments[0].link.photo.sizes[2].url} alt="pict" />
-            <div>{this.stats}</div>
+            <img className='picture' width='200px' src={post.attachments[0].link.photo.sizes[2].url} alt="pict" />
+            <div className='underPicture'>
+              <p>Title: {post.attachments[0].link.title}</p>
+              <p>{post.attachments[0].link.description}</p>
+            </div>
           </div>
+          <div className='block'>{this.stats}</div>
         </div>
       )
     }
@@ -47,10 +49,12 @@ class VKPost extends Component {
       return (
         <div className='posts'>
           <div className='inpost'>
-            <p>{post.text}</p>
-            <img  className='picture' width='200px' src={post.attachments[0].photo.sizes[2].url} alt="pict" />
-            <div>{this.stats}</div>
+            <img className='picture imgPic' width='200px' src={post.attachments[0].photo.sizes[2].url} alt="pict" />
+            <div className='underPicture'>
+              <p>{post.text}</p>
+            </div>
           </div>
+          <div className='block'>{this.stats}</div>
         </div>
       )
     }

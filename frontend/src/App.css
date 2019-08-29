@@ -83,24 +83,57 @@
   border-radius: 20px
 }
 .posts{
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   width:298px;
-  height: auto;
+  height: 324px;
   justify-content: space-around;
   margin: 10px auto;
-  /* box-shadow: 3px 3px 5px; */
-  align-items: flex-start;
-  border-radius: 2px;
+  box-shadow: 3px 3px 5px;
+  /* align-items: center; */
+  background-color: antiquewhite;
 }
+
+.block{
+  margin-left: 40px;
+}
+
+.inpost {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 30px;
+  border-radius: 2px;
+  overflow: auto;
+  height: 230px;
+}
+
 .posts .picture{
+  border-radius: 3px;
+  box-shadow: 0 3px 5px rgb(92, 90, 90);
+  margin-bottom: 15px;
+}
+
+.video {
   border-radius: 3px;
   box-shadow: 0 3px 5px rgb(92, 90, 90);
 }
 
 .posts p {
-  width: 250px;
-  font-size: 20px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+  width: 180px;
+  font-size: 15px;
+  font-family: 'Gayathri', sans-serif;
+  font-family: 'Neucha', cursive;
+  font-family: 'Exo 2', sans-serif;
+
+}
+
+.underPicture {
+  width: 200px;
+  background-color: antiquewhite;
+  border-radius: 2px;
 }
 
 .socPosts {
@@ -112,14 +145,6 @@
   margin: 10px;
 }
 
-.inpost {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  /* margin-left: 40px; */
-  margin: 0 auto;
-  margin-top: 30px;
-}
 /* rgba(248, 138, 75, 0.801) */
 /* rgba(54, 236, 160, 0.801) */
 .mainPage{
@@ -210,5 +235,7 @@
   display: flex;
   align-items: center;
   width: 200px; 
-  height: 250px;
+  /* height: 250px; */
 }
+
+
