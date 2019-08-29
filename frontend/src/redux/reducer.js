@@ -13,17 +13,17 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_USER: {
       return {
-        user:  {login: action.login, facebookId : state.facebookId},
+        user:  {login: action.login, facebookId : state.user.facebookId},
       };
     }
     case DEL_USER:{
       return {
-        user: {login: "", facebookId : state.facebookId}
+        user: {login: "", facebookId : state.user.facebookId}
       }
     };
     case ADD_ID:{
       return {
-        user: {login: state.login, facebookId : action.id}
+        user: {login: state.user.login, facebookId : action.id}
       }
     }
    

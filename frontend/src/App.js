@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { addUser } from './redux/actions';
+import { addUser, addId } from './redux/actions';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Main from "./Components/Main";
@@ -12,6 +12,7 @@ import Background from './back.png';
 class App extends Component {
 
   async componentDidMount() {
+    console.log(this.props.user);
     if(!this.props.user){
       let resp = await fetch("/", {
         method: "POST",
@@ -24,12 +25,36 @@ class App extends Component {
       let us = await resp.json();
       if (us.user) {
         await this.props.add(us.user)
+        await window.FB.login( (response) => {
+          if (response.authResponse) {
+              this.props.addId(response.authResponse.userID)
+          }  
+      }, { scope: "user_posts" })
+      
       }
     }
+
     }
    
   render() {
+    // if(!this.props.user){
+    //   let resp = await fetch("/", {
+    //     method: "POST",
+    //     credentials: 'include',
+    //     headers: {
+    //       "Accept": "application/json",
+    //       "Content-Type": "application/json"
+    //     }
+    //   })
+    //   let us = await resp.json();
+    //   if (us.user) {
+    //     await this.props.add(us.user)
+    //   }
+    // }
+    console.log(this.props.user)
+    console.log(this.props.id)
     return (
+     
       <Router>
         <div style={{backgroundImage:'url('+Background+')', backgroundSize:'cover'}}>
           {this.props.user ?
@@ -38,7 +63,6 @@ class App extends Component {
            </div>
             :
             <div>
-
               <Start />
             </div>
           }
@@ -50,13 +74,15 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user.login
+    user: state.user.login,
+    id: state.user.facebookId
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     add: (login) => dispatch(addUser(login)),
+    addId: (id) => dispatch( addId(id) ),
   }
 }
 

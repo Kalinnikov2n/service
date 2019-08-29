@@ -6,15 +6,13 @@ import Sidebar from "./Sidebar"
 import { addId } from '../redux/actions';
 
 export class Main extends Component {
-  // async componentDidMount(){
-  //   await window.FB.login( (response) => {
-  //     if (response.authResponse) {
-  //         this.props.addId(response.authResponse.userID)
-  //     }  
-  // }, { scope: "user_posts" })
-  // }
+ 
 
   render() {
+
+
+
+    console.log("here")
     return (
       <div>
         <Navbar/>
