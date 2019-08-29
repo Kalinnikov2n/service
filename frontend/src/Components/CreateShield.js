@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import { zoomIn } from 'react-animations';
+import styled, { keyframes } from 'styled-components';
+
+const Bounce = styled.div`animation: 2s ${keyframes`${zoomIn}`} `;
 
 export default class CreateShield extends Component {
     constructor(props) {
@@ -55,13 +59,17 @@ export default class CreateShield extends Component {
     }
     render() {
         return (
+                <Bounce>
             <div className = "postsWis">
-                <input onChange={this.title} id="title" type="text" value={this.state.title} />
-                <textarea onChange={this.textarea} id="description" type="text" value={this.state.description} />
+                <input onChange={this.title} id="title" type="text" value={this.state.title} placeholder="Title"/>
+                <textarea onChange={this.textarea} id="description" type="text" value={this.state.description} placeholder="Message"/>
                 <input id="img" type="file" onChange={this.img} />
-                <input type="submit" onClick={this.save} />
                 {this.state.imgUrl ? <img src={this.state.imgUrl} width="200px" height="200px" alt="pict" /> : null}
+                <div>
+                <button type="submit" onClick={this.save}>Save</button>
+                </div>
             </div>
+                </Bounce>
         )
     }
 }
