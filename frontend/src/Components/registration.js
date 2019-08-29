@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import { addUser, addId } from '../redux/actions';
 import {connect} from 'react-redux'
 import { zoomIn } from 'react-animations';
+import { BrowserRouter as  NavLink, Link } from "react-router-dom";
 import styled, { keyframes } from 'styled-components';
 
 const Bounce = styled.div`animation: 1s ${keyframes`${zoomIn}`} `;
@@ -64,7 +65,8 @@ fb = async(e) =>{
             login : name,
             password: "123"
           }
-          let resp = await fetch("/reg", {
+          console.log(data)
+          let resp = await fetch("/check", {
             method: "POST",
             headers: {
               "Accept": "application/json",
@@ -74,7 +76,7 @@ fb = async(e) =>{
           })
           let user = await resp.json();
           console.log("hi")
-          // window.location.assign("/servicePosts")
+          window.location.assign("/servicePosts")
           // this.props.add(user.user)
           // window.location.assign("/servicePosts")
           
@@ -101,7 +103,7 @@ console.log(name)
           <input value={this.state.password} onChange={this.password} type= "password"/>
           <button type="submit" >Sign Up</button>
       </form>
-      <span onClick={this.fb}>Continue with Facebook</span>
+      <Link to="/servicePosts" > <span onClick={this.fb}>Continue with Facebook</span></Link>
       </Bounce>
       </div>
     )

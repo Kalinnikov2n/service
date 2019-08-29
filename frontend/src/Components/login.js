@@ -57,33 +57,45 @@ fb = async(e) =>{
   let name;
   await window.FB.login( (response) => {
     if (response.authResponse) {
+      console.log(response)
       id = response.authResponse.userID;
         this.props.addId(response.authResponse.userID)
     }  
-}, { scope: "user_posts" })
-await window.FB.api(`/${id}?fields=id,name`, (response) => {
-  if (!response || response.error) {
-  } else {
-      console.log(response)
-      name = response.name;
-      this.props.add(response.name)
-  }
-});
-let data = {
-  login : name,
-  password: ""
-}
-let resp = await fetch("/reg", {
-  method: "POST",
-  headers: {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(data)
-})
-let user = await resp.json();
-this.props.add(user.user)
-window.location.assign("/servicePosts")
+     window.FB.api(`/${id}`, async (response) => {
+      if (!response || response.error) {
+        console.log(response)
+      } else {
+          console.log(response)
+          name = response.name;
+          this.props.add(response.name)
+          let data = {
+            login : name,
+            password: "123"
+          }
+          console.log(data)
+          let resp = await fetch("/check", {
+            method: "POST",
+            headers: {
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+          })
+          let user = await resp.json();
+          console.log("hi")
+          window.location.assign("/servicePosts")
+          // this.props.add(user.user)
+          // window.location.assign("/servicePosts")
+          
+      }
+      
+    
+    });
+}, { scope: "user_posts, email" })
+
+// window.location.assign("/servicePosts")
+console.log(name)
+
 
 }
   render(){
