@@ -30,8 +30,8 @@ export default class ServicePosts extends Component {
                 <div className="addBtn">
                 <img onClick={this.getModale} src = {AddBtn} width = "100px"/>
                 </div>
-                <div className = "postsWisDiv">
-                {this.state.modal ? <CreateShield getModale={this.getModale}/> :this.state.posts.map(el => <ServicePost img= {el.imgUrl} title={el.title} description={el.description} id={el._id}/>)}
+                <div>
+                {this.state.modal ? <div className = "postsWisDiv"><CreateShield getModale={this.getModale}/></div> : <div className="socPosts">{this.state.posts.map(el => <ServicePost img= {el.imgUrl} title={el.title} description={el.description} id={el._id}/>)}</div>}
                 </div>
             </div>
         )

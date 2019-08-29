@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Like from '../like.png';
 import View from '../eye.png';
 import Comment from '../comment.png';
+import { bounceInUp } from 'react-animations';
+import styled, { keyframes } from 'styled-components';
+
+const Bounce = styled.div`animation: 2s ${keyframes`${bounceInUp}`} `;
 
 
 class VKPost extends Component {
@@ -24,13 +28,14 @@ class VKPost extends Component {
     // console.log(this.props.post)
     const { post } = this.props;
     console.log("apowkdpokwapod",post)
-
     if (post.copy_history && post.copy_history[0].text) {
       return (
         <div>
+          <Bounce>
           <p>
             {post.copy_history[0].text}
           </p>
+          </Bounce>
         </div>
       )
     }
@@ -38,8 +43,10 @@ class VKPost extends Component {
     if (post.copy_history && post.copy_history[0].attachments && post.copy_history[0].attachments[0].photo ) {
       return (
         <div>
-            {console.log("++++++++++++++++++++++")}
+          <Bounce>
           <img src={post.copy_history[0].attachments[0].photo.sizes[0].url}/>
+          </Bounce>
+            {console.log("++++++++++++++++++++++")}
         </div>
       )
     }
@@ -53,6 +60,7 @@ class VKPost extends Component {
     if (post.attachments[0].link && post.attachments[0].link.photo) {
       return (
         <div className='posts'>
+          <Bounce>
           <div className='inpost'>
             <img className='picture' width='200px' src={post.attachments[0].link.photo.sizes[2].url} alt="pict" />
             <div className='underPicture'>
@@ -61,6 +69,7 @@ class VKPost extends Component {
             </div>
           </div>
           <div className='block'>{this.stats}</div>
+          </Bounce>
         </div>
       )
     }
@@ -68,6 +77,7 @@ class VKPost extends Component {
     if (post.attachments[0].photo) {
       return (
         <div className='posts'>
+          <Bounce>
           <div className='inpost'>
             <img className='picture imgPic' width='200px' src={post.attachments[0].photo.sizes[2].url} alt="pict" />
             <div className='underPicture'>
@@ -75,6 +85,7 @@ class VKPost extends Component {
             </div>
           </div>
           <div className='block'>{this.stats}</div>
+          </Bounce>
         </div>
       )
     }
