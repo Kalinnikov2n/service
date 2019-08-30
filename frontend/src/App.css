@@ -386,3 +386,9 @@ padding-top:15px;
   font-size: 25px;
   color:rgb(71, 70, 71);
 }
+
+.noposts{
+  color:black;
+  font-size:30px;
+  margin-left:50px;
+}

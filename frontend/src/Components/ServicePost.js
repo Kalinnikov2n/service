@@ -30,8 +30,8 @@ export default class ServicePost extends Component {
                         <YandexShare content={{ title: this.props.title, image: this.props.img, url: this.props.img, description: this.props.description }}
                             theme={{ services: 'vkontakte,facebook,twitter' }} />
                             <div className = "wisStats">
-                        <span className='stats'><img src={Like} width={20} /> 2</span>
-                        <span className='stats'><img src={Comment} width={20} /> 3</span>
+                        <span className='stats'><img src={Like} width={20} />0</span>
+                        <span className='stats'><img src={Comment} width={20} />0</span>
 
                             </div>
                     </div>
