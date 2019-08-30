@@ -119,8 +119,8 @@
   background-color: rgba(248, 247, 247, 0.993); 
   border-radius: 20px;
   overflow: hidden;
-  width:298px;
-  height: 340px;
+  width:250px;
+  height: 320px;
   justify-content: space-around;
   margin: 10px auto;
   box-shadow: 3px 3px 5px;
@@ -130,7 +130,7 @@
 
 .block{
   display: flex;
-  margin-left: 50px;
+  margin-left: 25px;
   margin-top:20px;
   margin-bottom: 10px;
 }
