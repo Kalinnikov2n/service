@@ -120,7 +120,7 @@
   border-radius: 20px;
   overflow: hidden;
   width:298px;
-  height: 324px;
+  height: 340px;
   justify-content: space-around;
   margin: 10px auto;
   box-shadow: 3px 3px 5px;
@@ -144,7 +144,7 @@
   margin-top: 30px;
   border-radius: 2px;
   overflow: auto;
-  height: 230px;
+  height: 240px;
 }
 
 .posts .picture{
@@ -273,6 +273,10 @@
   color: red; 
   margin-left: 160px;
 }
+.logReg img{
+  margin-left: 10px;
+  cursor:pointer;
+}
 .addBtn{
   width:250px;
 }
@@ -375,4 +379,10 @@ padding-top:15px;
 .wisStats{
   margin-left: 20px;
 }
-
+.startDiv{
+  margin-top: 20px;
+}
+.startDiv span{
+  font-size: 25px;
+  color:rgb(71, 70, 71);
+}

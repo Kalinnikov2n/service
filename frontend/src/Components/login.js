@@ -110,7 +110,7 @@ console.log(name)
           <input value={this.state.password} onChange={this.password} type= "password"/>
           <button type="submit" >Sign In</button>
       </form>
-      <span onClick={this.fb}>Continue with Facebook</span>
+      <img onClick={this.fb} src = "https://cdn.worldvectorlogo.com/logos/facebook-4.svg" width = "60px"/>
       </Bounce>
       </div>
     )
