@@ -27,14 +27,15 @@ class VKPost extends Component {
   render() {
     // console.log(this.props.post)
     const { post } = this.props;
-    console.log("apowkdpokwapod", post)
-
+    console.log("apowkdpokwapod",post)
     if (post.copy_history && post.copy_history[0].text) {
       return (
         <div>
+          <Bounce>
           <p>
             {post.copy_history[0].text}
           </p>
+          </Bounce>
         </div>
       )
     }
@@ -42,8 +43,10 @@ class VKPost extends Component {
     if (post.copy_history && post.copy_history[0].attachments && post.copy_history[0].attachments[0].photo) {
       return (
         <div>
-          {console.log("++++++++++++++++++++++")}
-          <img src={post.copy_history[0].attachments[0].photo.sizes[0].url} />
+          <Bounce>
+          <img src={post.copy_history[0].attachments[0].photo.sizes[0].url}/>
+          </Bounce>
+            {console.log("++++++++++++++++++++++")}
         </div>
       )
     }
@@ -58,14 +61,14 @@ class VKPost extends Component {
       return (
         <div className='posts'>
           <Bounce>
-            <div className='inpost'>
-              <img className='picture' width='200px' src={post.attachments[0].link.photo.sizes[2].url} alt="pict" />
-              <div className='underPicture'>
-                <p>Title: {post.attachments[0].link.title}</p>
-                <p>{post.attachments[0].link.description}</p>
-              </div>
+          <div className='inpost'>
+            <img className='picture' width='200px' src={post.attachments[0].link.photo.sizes[2].url} alt="pict" />
+            <div className='underPicture'>
+              <p>Title: {post.attachments[0].link.title}</p>
+              <p>{post.attachments[0].link.description}</p>
             </div>
-            <div className='block'>{this.stats}</div>
+          </div>
+          <div className='block'>{this.stats}</div>
           </Bounce>
         </div>
       )
@@ -75,13 +78,13 @@ class VKPost extends Component {
       return (
         <div className='posts'>
           <Bounce>
-            <div className='inpost'>
-              <img className='picture imgPic' width='200px' src={post.attachments[0].photo.sizes[2].url} alt="pict" />
-              <div className='underPicture'>
-                <p>{post.text}</p>
-              </div>
+          <div className='inpost'>
+            <img className='picture imgPic' width='200px' src={post.attachments[0].photo.sizes[2].url} alt="pict" />
+            <div className='underPicture'>
+              <p>{post.text}</p>
             </div>
-            <div className='block'>{this.stats}</div>
+          </div>
+          <div className='block'>{this.stats}</div>
           </Bounce>
         </div>
       )
