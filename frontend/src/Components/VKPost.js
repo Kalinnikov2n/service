@@ -40,7 +40,7 @@ class VKPost extends Component {
       )
     }
 
-    if (post.copy_history && post.copy_history[0].attachments && post.copy_history[0].attachments[0].photo ) {
+    if (post.copy_history && post.copy_history[0].attachments && post.copy_history[0].attachments[0].photo) {
       return (
         <div>
           <Bounce>
