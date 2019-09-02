@@ -3,7 +3,7 @@
 **WEB Intelligence service** -сервис, позволяющий пользователю следить за активностью его аккаунтов в социальных сетях (Вконтакте, Instagram, facebook), а также создавать посты и размещать их с одной платформы.
 
 ## Our Mission
-![goodprice](/goodprice.png)
+![service](/service.png)
 
 
 ## Getting Started
