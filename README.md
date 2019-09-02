@@ -24,9 +24,9 @@ npm start
 ## Authors 
 
 
-- [Калинников Никита](https://github.com/beshunmo)
-- [Степан Мулкиджанян](https://github.com/le0n229)
-- [Александр Кучер](https://github.com/le0n229)
+- [Калинников Никита](https://github.com/kalinnikov2n)
+- [Степан Мулкиджанян](https://github.com/Dobriy98)
+- [Александр Кучер](https://github.com/mrkucher83)
   
 ## Next Steps
 
